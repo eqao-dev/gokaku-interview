@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <base target="_top">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>合格者インタビュー日程予約 | EQAO教育グループ</title>
   <style>
     * {
       box-sizing: border-box;
@@ -19,95 +18,85 @@
     }
     
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif;
-      background: linear-gradient(135deg, #e8eef5 0%, #dce4ed 100%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #f5f7fa;
       min-height: 100vh;
-      min-height: -webkit-fill-available;
-      padding: 20px;
-      margin: 0;
+      color: #333;
     }
     
+    /* PC用：中央配置 */
     .container {
       max-width: 480px;
-      margin: 0 auto;
+      margin: 40px auto;
       background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
       overflow: hidden;
     }
     
+    /* スマホ用：横幅いっぱい */
+    @media (max-width: 520px) {
+      body {
+        background: white;
+      }
+      .container {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100vh;
+      }
+    }
+    
+    /* ヘッダー */
     .header {
       background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #3182ce 100%);
       color: white;
-      padding: 32px 24px;
+      padding: 36px 24px;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
     
     .header::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at top right, rgba(255,255,255,0.15) 0%, transparent 50%);
       pointer-events: none;
     }
     
-    /* スマホ対応 - 横幅いっぱいに */
-    @media (max-width: 520px) {
-      body {
-        padding: 0;
-        background: white;
-      }
-      
-      .container {
-        max-width: 100%;
-        width: 100%;
-        border-radius: 0;
-        box-shadow: none;
-        min-height: 100vh;
-      }
-      
-      .header {
-        padding: 28px 20px;
-        border-radius: 0;
-      }
-    }
-    
-    .header .company-name {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      opacity: 1;
-      background: rgba(255,255,255,0.15);
+    .company-badge {
       display: inline-block;
-      padding: 6px 16px;
-      border-radius: 20px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(4px);
     }
     
     .header h1 {
       font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 16px;
+      font-weight: 800;
       line-height: 1.4;
+      margin-bottom: 16px;
       letter-spacing: 1px;
     }
     
-    .header .description {
+    .header-desc {
       font-size: 13px;
       line-height: 1.8;
       opacity: 0.9;
-      max-width: 300px;
-      margin: 0 auto;
     }
     
+    /* フォーム */
     .form-section {
-      padding: 24px 20px 32px;
+      padding: 28px 24px 36px;
     }
     
     .form-group {
@@ -116,7 +105,7 @@
     
     .form-group label {
       display: block;
-      font-weight: 600;
+      font-weight: 700;
       color: #1e3a5f;
       margin-bottom: 10px;
       font-size: 14px;
@@ -130,14 +119,13 @@
     .form-group input,
     .form-group textarea {
       width: 100%;
-      padding: 16px;
+      padding: 16px 18px;
       border: 2px solid #e2e8f0;
       border-radius: 12px;
       font-size: 16px;
+      background: #f8fafc;
       transition: all 0.3s;
       -webkit-appearance: none;
-      appearance: none;
-      background: #f8fafc;
     }
     
     .form-group input:focus,
@@ -154,15 +142,10 @@
     }
     
     /* カレンダー */
-    .calendar-section {
-      margin-bottom: 24px;
-    }
-    
     .calendar-container {
       border: 2px solid #e2e8f0;
       border-radius: 16px;
       overflow: hidden;
-      background: white;
     }
     
     .calendar-header {
@@ -170,26 +153,30 @@
       justify-content: space-between;
       align-items: center;
       background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
-      color: white;
-      padding: 16px 20px;
+      padding: 14px 16px;
     }
     
     .calendar-header button {
       background: rgba(255,255,255,0.15);
       border: none;
       color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       font-size: 18px;
       cursor: pointer;
-      padding: 10px 14px;
-      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: background 0.2s;
     }
     
-    .calendar-header button:active {
+    .calendar-header button:hover {
       background: rgba(255,255,255,0.25);
     }
     
-    .calendar-header .month-year {
+    .month-year {
+      color: white;
       font-size: 17px;
       font-weight: 700;
       letter-spacing: 1px;
@@ -198,7 +185,7 @@
     .calendar-weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      background: #f8fafc;
+      background: #f1f5f9;
       border-bottom: 1px solid #e2e8f0;
     }
     
@@ -210,13 +197,8 @@
       color: #64748b;
     }
     
-    .calendar-weekdays span:first-child {
-      color: #e53e3e;
-    }
-    
-    .calendar-weekdays span:last-child {
-      color: #3182ce;
-    }
+    .calendar-weekdays span:first-child { color: #e53e3e; }
+    .calendar-weekdays span:last-child { color: #3182ce; }
     
     .calendar-days {
       display: grid;
@@ -232,50 +214,40 @@
       align-items: center;
       justify-content: center;
       font-size: 15px;
-      color: #334155;
+      font-weight: 500;
+      color: #475569;
       border-radius: 50%;
       cursor: default;
       position: relative;
-      font-weight: 500;
     }
     
-    .calendar-day.empty {
-      visibility: hidden;
-    }
-    
-    .calendar-day.other-month {
-      color: #cbd5e1;
-    }
+    .calendar-day.empty { visibility: hidden; }
     
     .calendar-day.has-slots {
       background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
       color: white;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(30, 58, 95, 0.3);
+      box-shadow: 0 3px 10px rgba(30, 58, 95, 0.35);
+      transition: transform 0.2s;
+    }
+    
+    .calendar-day.has-slots:hover {
+      transform: scale(1.1);
     }
     
     .calendar-day.has-slots:active {
-      transform: scale(0.9);
-    }
-    
-    .calendar-day.selected {
-      background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
-      color: white;
+      transform: scale(0.95);
     }
     
     .calendar-day.has-slots::after {
       content: '';
       position: absolute;
-      bottom: 4px;
+      bottom: 3px;
       width: 5px;
       height: 5px;
       background: #48bb78;
       border-radius: 50%;
-    }
-    
-    .calendar-day.selected::after {
-      background: white;
     }
     
     .calendar-legend {
@@ -284,8 +256,6 @@
       gap: 24px;
       padding: 14px;
       background: #f8fafc;
-      font-size: 12px;
-      color: #64748b;
       border-top: 1px solid #e2e8f0;
     }
     
@@ -293,7 +263,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-weight: 500;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
     }
     
     .legend-dot {
@@ -310,155 +282,36 @@
       background: #e2e8f0;
     }
     
-    /* モーダル */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    
-    .modal-overlay.show {
-      display: flex;
-    }
-    
-    .modal {
-      background: white;
-      border-radius: 20px;
-      width: 100%;
-      max-width: 360px;
-      max-height: 80vh;
-      overflow: hidden;
-      animation: modalIn 0.3s ease-out;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-    }
-    
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9) translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-    
-    .modal-header {
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
-      color: white;
-      padding: 20px 24px;
-      text-align: center;
-    }
-    
-    .modal-header h3 {
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-    
-    .modal-body {
-      padding: 20px;
-      max-height: 50vh;
-      overflow-y: auto;
-    }
-    
-    .modal-slots {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    
-    .modal-slot-btn {
-      padding: 16px 8px;
-      border: 2px solid #1e3a5f;
-      border-radius: 12px;
-      background: white;
-      color: #1e3a5f;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    
-    .modal-slot-btn:active:not(.disabled) {
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
-      color: white;
-      transform: scale(0.95);
-    }
-    
-    .modal-slot-btn.disabled {
-      border-color: #e2e8f0;
-      color: #a0aec0;
-      background: #f7fafc;
-      cursor: not-allowed;
-      text-decoration: line-through;
-    }
-    
-    .modal-footer {
-      padding: 16px 20px 20px;
-      border-top: 1px solid #e2e8f0;
-    }
-    
-    .modal-close-btn {
-      width: 100%;
-      padding: 14px;
-      background: #f1f5f9;
-      color: #64748b;
-      border: none;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    
-    .modal-close-btn:active {
-      background: #e2e8f0;
-    }
-    
-    /* 選択中表示 */
-    .selected-slot-display {
+    /* 選択表示 */
+    .selected-display {
       background: linear-gradient(135deg, #ebf8ff 0%, #e6fffa 100%);
       border: 2px solid #3182ce;
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 18px 20px;
-      margin-bottom: 24px;
+      margin-top: 20px;
       display: none;
     }
     
-    .selected-slot-display.show {
-      display: block;
-    }
+    .selected-display.show { display: block; }
     
-    .selected-slot-display p {
-      color: #2c5282;
+    .selected-display .label {
       font-size: 12px;
-      margin-bottom: 6px;
       font-weight: 600;
+      color: #2c5282;
+      margin-bottom: 6px;
     }
     
-    .selected-slot-display strong {
-      color: #1e3a5f;
+    .selected-display .datetime {
       font-size: 18px;
-      display: block;
+      font-weight: 700;
+      color: #1e3a5f;
     }
     
-    .selected-slot-display .change-btn {
+    .change-btn {
       display: inline-block;
       margin-top: 12px;
       padding: 8px 16px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      background: #1e3a5f;
       color: white;
       border: none;
       border-radius: 8px;
@@ -478,33 +331,129 @@
       font-size: 17px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s;
-      min-height: 58px;
-      -webkit-appearance: none;
-      appearance: none;
       box-shadow: 0 4px 15px rgba(30, 58, 95, 0.3);
+      transition: all 0.2s;
       letter-spacing: 1px;
+    }
+    
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(30, 58, 95, 0.4);
     }
     
     .submit-btn:active:not(:disabled) {
       transform: scale(0.98);
-      box-shadow: 0 2px 8px rgba(30, 58, 95, 0.3);
     }
     
     .submit-btn:disabled {
       background: #cbd5e1;
-      cursor: not-allowed;
       box-shadow: none;
+      cursor: not-allowed;
+    }
+    
+    /* モーダル */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .modal-overlay.show { display: flex; }
+    
+    .modal {
+      background: white;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 360px;
+      overflow: hidden;
+      animation: modalIn 0.3s ease-out;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    }
+    
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    .modal-header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+      color: white;
+      padding: 20px 24px;
+      text-align: center;
+    }
+    
+    .modal-header h3 {
+      font-size: 17px;
+      font-weight: 700;
+    }
+    
+    .modal-body {
+      padding: 20px;
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+    
+    .modal-slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    
+    .modal-slot {
+      padding: 16px 8px;
+      border: 2px solid #1e3a5f;
+      border-radius: 12px;
+      background: white;
+      color: #1e3a5f;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .modal-slot:hover:not(.disabled) {
+      background: #1e3a5f;
+      color: white;
+    }
+    
+    .modal-slot.disabled {
+      border-color: #e2e8f0;
+      color: #a0aec0;
+      background: #f7fafc;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+    
+    .modal-footer {
+      padding: 16px 20px 20px;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .modal-close {
+      width: 100%;
+      padding: 14px;
+      background: #f1f5f9;
+      color: #64748b;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
     }
     
     /* ローディング */
     .loading {
       text-align: center;
       padding: 60px 20px;
-      color: #64748b;
     }
     
-    .loading-spinner {
+    .spinner {
       width: 40px;
       height: 40px;
       border: 3px solid #e2e8f0;
@@ -514,39 +463,12 @@
       margin: 0 auto 20px;
     }
     
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
     .loading p {
+      color: #64748b;
       font-size: 15px;
       font-weight: 500;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    /* メッセージ */
-    .message {
-      padding: 16px 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      display: none;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    
-    .message.show {
-      display: block;
-    }
-    
-    .message.success {
-      background: #c6f6d5;
-      color: #22543d;
-      border: 1px solid #9ae6b4;
-    }
-    
-    .message.error {
-      background: #fed7d7;
-      color: #742a2a;
-      border: 1px solid #feb2b2;
     }
     
     /* 完了画面 */
@@ -556,9 +478,7 @@
       display: none;
     }
     
-    .complete-section.show {
-      display: block;
-    }
+    .complete-section.show { display: block; }
     
     .complete-icon {
       width: 80px;
@@ -580,15 +500,15 @@
     
     .complete-section h2 {
       color: #1e3a5f;
-      margin-bottom: 16px;
       font-size: 22px;
       font-weight: 700;
+      margin-bottom: 16px;
     }
     
     .complete-section p {
       color: #64748b;
-      line-height: 1.8;
       font-size: 15px;
+      line-height: 1.8;
     }
     
     .complete-details {
@@ -603,89 +523,89 @@
     .complete-details dt {
       font-size: 12px;
       color: #64748b;
-      margin-bottom: 4px;
       font-weight: 600;
+      margin-bottom: 4px;
     }
     
     .complete-details dd {
       font-size: 16px;
       color: #1e3a5f;
-      margin-bottom: 16px;
       font-weight: 600;
+      margin-bottom: 16px;
     }
     
-    .complete-details dd:last-child {
-      margin-bottom: 0;
+    .complete-details dd:last-child { margin-bottom: 0; }
+    
+    /* メッセージ */
+    .message {
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: none;
+      font-size: 14px;
+      font-weight: 500;
     }
+    
+    .message.show { display: block; }
+    .message.error { background: #fed7d7; color: #c53030; border: 1px solid #feb2b2; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <div class="company-name">EQAO教育グループ</div>
-      <h1 id="page-title">合格者インタビュー<br>日程予約</h1>
-      <div class="description">
+    <header class="header">
+      <div class="company-badge">EQAO教育グループ</div>
+      <h1>合格者インタビュー<br>日程予約</h1>
+      <p class="header-desc">
         カレンダーから希望日をタップしてください<br>
         紺色の日付が予約可能です（所要時間30分）
-      </div>
-    </div>
+      </p>
+    </header>
     
-    <!-- ローディング -->
     <div class="loading" id="loading">
-      <div class="loading-spinner"></div>
+      <div class="spinner"></div>
       <p>読み込み中...</p>
     </div>
     
-    <!-- フォーム -->
-    <div class="form-section" id="form-section" style="display: none;">
+    <div class="form-section" id="formSection" style="display:none;">
       <div class="message" id="message"></div>
       
       <div class="form-group">
         <label>生徒番号<span class="required">*</span></label>
-        <input type="text" id="studentId" placeholder="例：12345" required>
+        <input type="text" id="studentId" placeholder="例：12345">
       </div>
       
       <div class="form-group">
         <label>生徒氏名<span class="required">*</span></label>
-        <input type="text" id="studentName" placeholder="例：山田 太郎" required>
+        <input type="text" id="studentName" placeholder="例：山田 太郎">
       </div>
       
       <div class="form-group">
         <label>メールアドレス<span class="required">*</span></label>
-        <input type="email" id="email" placeholder="例：example@email.com" required>
+        <input type="email" id="email" placeholder="例：example@email.com">
       </div>
       
       <div class="form-group">
         <label>予約日時<span class="required">*</span></label>
         
-        <!-- カレンダー -->
-        <div class="calendar-section">
-          <div class="calendar-container">
-            <div class="calendar-header">
-              <button onclick="changeMonth(-1)">◀</button>
-              <span class="month-year" id="monthYear"></span>
-              <button onclick="changeMonth(1)">▶</button>
-            </div>
-            <div class="calendar-weekdays">
-              <span>日</span>
-              <span>月</span>
-              <span>火</span>
-              <span>水</span>
-              <span>木</span>
-              <span>金</span>
-              <span>土</span>
-            </div>
-            <div class="calendar-days" id="calendarDays"></div>
-            <div class="calendar-legend">
-              <span><div class="legend-dot available"></div>予約可能</span>
-              <span><div class="legend-dot unavailable"></div>予約不可</span>
-            </div>
+        <div class="calendar-container">
+          <div class="calendar-header">
+            <button onclick="changeMonth(-1)">◀</button>
+            <span class="month-year" id="monthYear"></span>
+            <button onclick="changeMonth(1)">▶</button>
+          </div>
+          <div class="calendar-weekdays">
+            <span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span>
+          </div>
+          <div class="calendar-days" id="calendarDays"></div>
+          <div class="calendar-legend">
+            <span><div class="legend-dot available"></div>予約可能</span>
+            <span><div class="legend-dot unavailable"></div>予約不可</span>
           </div>
         </div>
         
-        <div class="selected-slot-display" id="selected-display">
-          <p>選択中の日時</p>
-          <strong id="selected-datetime"></strong>
+        <div class="selected-display" id="selectedDisplay">
+          <div class="label">選択中の日時</div>
+          <div class="datetime" id="selectedDatetime"></div>
           <button class="change-btn" onclick="clearSelection()">変更する</button>
         </div>
       </div>
@@ -695,13 +615,10 @@
         <textarea id="note" placeholder="連絡事項などがあればご記入ください"></textarea>
       </div>
       
-      <button type="button" class="submit-btn" id="submit-btn" onclick="submitForm()" disabled>
-        予約する
-      </button>
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()" disabled>予約する</button>
     </div>
     
-    <!-- 完了画面 -->
-    <div class="complete-section" id="complete-section">
+    <div class="complete-section" id="completeSection">
       <div class="complete-icon">
         <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
       </div>
@@ -710,94 +627,78 @@
       <div class="complete-details">
         <dl>
           <dt>予約日時</dt>
-          <dd id="complete-datetime"></dd>
+          <dd id="completeDatetime"></dd>
           <dt>生徒氏名</dt>
-          <dd id="complete-name"></dd>
+          <dd id="completeName"></dd>
         </dl>
       </div>
     </div>
   </div>
   
   <!-- モーダル -->
-  <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
     <div class="modal" onclick="event.stopPropagation()">
       <div class="modal-header">
-        <h3 id="modal-title">日付</h3>
+        <h3 id="modalTitle">日付</h3>
       </div>
       <div class="modal-body">
-        <div class="modal-slots" id="modal-slots"></div>
+        <div class="modal-slots" id="modalSlots"></div>
       </div>
       <div class="modal-footer">
-        <button class="modal-close-btn" onclick="closeModal()">閉じる</button>
+        <button class="modal-close" onclick="closeModal()">閉じる</button>
       </div>
     </div>
   </div>
   
   <script>
+    // ★★★ ここにGASのデプロイURLを入れてください ★★★
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwhoqH2GLArS6Ov0YN1UFwoC85Npim-R6zJf660nmBqM77E8gyk1qn4IzJsBZnKom0dww/exec';
+    
     let slotsData = [];
     let selectedSlot = null;
     let currentYear = 2024;
-    let currentMonth = 12; // 1-12
-    let availableDates = {}; // { "12/19": [{...}], "12/22": [{...}] }
+    let currentMonth = 12;
+    let availableDates = {};
     
     // 初期化
-    document.addEventListener('DOMContentLoaded', function() {
-      loadConfig();
-      loadSlots();
-    });
-    
-    // 設定読み込み
-    function loadConfig() {
-      google.script.run
-        .withSuccessHandler(function(config) {
-          document.getElementById('page-title').textContent = config.title;
-        })
-        .getConfig();
-    }
+    document.addEventListener('DOMContentLoaded', loadSlots);
     
     // 予約枠読み込み
-    function loadSlots() {
-      google.script.run
-        .withSuccessHandler(function(data) {
-          slotsData = data;
-          processSlotData(data);
-          document.getElementById('loading').style.display = 'none';
-          document.getElementById('form-section').style.display = 'block';
-          renderCalendar();
-        })
-        .withFailureHandler(function(error) {
-          showMessage('データの読み込みに失敗しました: ' + error, 'error');
-          document.getElementById('loading').style.display = 'none';
-          document.getElementById('form-section').style.display = 'block';
-        })
-        .getSlots();
+    async function loadSlots() {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        slotsData = data;
+        processSlotData(data);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('formSection').style.display = 'block';
+        renderCalendar();
+      } catch (error) {
+        showMessage('データの読み込みに失敗しました', 'error');
+        document.getElementById('loading').innerHTML = '<p style="color:#e53e3e;">読み込みに失敗しました。<br>ページを再読み込みしてください。</p>';
+      }
     }
     
-    // スロットデータを日付ごとに整理
+    // スロットデータ処理
     function processSlotData(data) {
       availableDates = {};
-      data.forEach(function(dateGroup) {
-        // "12/19（木）" -> "12/19" の形式に
+      data.forEach(dateGroup => {
         const dateKey = dateGroup.date.split('（')[0];
         availableDates[dateKey] = dateGroup.slots;
       });
       
-      // 最初の予約可能月を表示
       if (data.length > 0) {
-        const firstDate = data[0].date.split('（')[0]; // "12/19"
+        const firstDate = data[0].date.split('（')[0];
         const parts = firstDate.split('/');
         currentMonth = parseInt(parts[0]);
-        // 1月なら2025年
-        if (currentMonth === 1) {
-          currentYear = 2025;
-        }
+        currentYear = currentMonth <= 6 ? 2025 : 2024;
       }
     }
     
     // カレンダー描画
     function renderCalendar() {
-      const monthNames = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-      document.getElementById('monthYear').textContent = currentYear + '年 ' + monthNames[currentMonth - 1];
+      const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+      document.getElementById('monthYear').textContent = `${currentYear}年 ${monthNames[currentMonth - 1]}`;
       
       const firstDay = new Date(currentYear, currentMonth - 1, 1);
       const lastDay = new Date(currentYear, currentMonth, 0);
@@ -807,29 +708,21 @@
       const container = document.getElementById('calendarDays');
       container.innerHTML = '';
       
-      // 空白セル
       for (let i = 0; i < startDayOfWeek; i++) {
-        const empty = document.createElement('div');
-        empty.className = 'calendar-day empty';
-        container.appendChild(empty);
+        container.innerHTML += '<div class="calendar-day empty"></div>';
       }
       
-      // 日付セル
       for (let day = 1; day <= daysInMonth; day++) {
+        const dateKey = `${currentMonth}/${day}`;
+        const slots = availableDates[dateKey];
+        const hasAvailable = slots?.some(s => s.status === '空き');
+        
         const dayEl = document.createElement('div');
-        dayEl.className = 'calendar-day';
+        dayEl.className = 'calendar-day' + (hasAvailable ? ' has-slots' : '');
         dayEl.textContent = day;
         
-        const dateKey = currentMonth + '/' + day;
-        const slots = availableDates[dateKey];
-        
-        if (slots) {
-          // 空きがあるかチェック
-          const hasAvailable = slots.some(function(s) { return s.status === '空き'; });
-          if (hasAvailable) {
-            dayEl.classList.add('has-slots');
-            dayEl.onclick = function() { openModal(dateKey); };
-          }
+        if (hasAvailable) {
+          dayEl.onclick = () => openModal(dateKey);
         }
         
         container.appendChild(dayEl);
@@ -839,13 +732,8 @@
     // 月変更
     function changeMonth(diff) {
       currentMonth += diff;
-      if (currentMonth > 12) {
-        currentMonth = 1;
-        currentYear++;
-      } else if (currentMonth < 1) {
-        currentMonth = 12;
-        currentYear--;
-      }
+      if (currentMonth > 12) { currentMonth = 1; currentYear++; }
+      else if (currentMonth < 1) { currentMonth = 12; currentYear--; }
       renderCalendar();
     }
     
@@ -854,95 +742,81 @@
       const slots = availableDates[dateKey];
       if (!slots) return;
       
-      // 曜日を取得
-      const parts = dateKey.split('/');
-      const month = parseInt(parts[0]);
-      const day = parseInt(parts[1]);
-      const year = month >= 1 && month <= 6 ? 2025 : 2024;
+      const [month, day] = dateKey.split('/').map(Number);
+      const year = month <= 6 ? 2025 : 2024;
       const date = new Date(year, month - 1, day);
-      const dayNames = ['日', '月', '火', '水', '木', '金', '土'];
+      const dayNames = ['日','月','火','水','木','金','土'];
       const dayOfWeek = dayNames[date.getDay()];
       
-      document.getElementById('modal-title').textContent = dateKey + '（' + dayOfWeek + '）の予約枠';
+      document.getElementById('modalTitle').textContent = `${dateKey}（${dayOfWeek}）の予約枠`;
       
-      const container = document.getElementById('modal-slots');
+      const container = document.getElementById('modalSlots');
       container.innerHTML = '';
       
-      slots.forEach(function(slot) {
+      slots.forEach(slot => {
         const btn = document.createElement('button');
-        btn.className = 'modal-slot-btn';
+        btn.className = 'modal-slot' + (slot.status !== '空き' ? ' disabled' : '');
         btn.textContent = slot.startTime + '〜';
+        btn.disabled = slot.status !== '空き';
         
-        if (slot.status !== '空き') {
-          btn.classList.add('disabled');
-          btn.disabled = true;
-        } else {
-          btn.onclick = function() {
-            selectSlotFromModal(dateKey, dayOfWeek, slot);
-          };
+        if (slot.status === '空き') {
+          btn.onclick = () => selectSlot(dateKey, dayOfWeek, slot);
         }
         
         container.appendChild(btn);
       });
       
-      document.getElementById('modal-overlay').classList.add('show');
+      document.getElementById('modalOverlay').classList.add('show');
     }
     
     // モーダル閉じる
     function closeModal(event) {
       if (event && event.target !== event.currentTarget) return;
-      document.getElementById('modal-overlay').classList.remove('show');
+      document.getElementById('modalOverlay').classList.remove('show');
     }
     
-    // モーダルから選択
-    function selectSlotFromModal(dateKey, dayOfWeek, slot) {
+    // 枠選択
+    function selectSlot(dateKey, dayOfWeek, slot) {
       selectedSlot = {
-        date: dateKey + '（' + dayOfWeek + '）',
+        date: `${dateKey}（${dayOfWeek}）`,
         startTime: slot.startTime,
         endTime: slot.endTime
       };
       
-      const display = document.getElementById('selected-display');
-      const datetime = document.getElementById('selected-datetime');
-      datetime.textContent = selectedSlot.date + ' ' + selectedSlot.startTime + '〜' + selectedSlot.endTime;
-      display.classList.add('show');
+      document.getElementById('selectedDatetime').textContent = 
+        `${selectedSlot.date} ${selectedSlot.startTime}〜${selectedSlot.endTime}`;
+      document.getElementById('selectedDisplay').classList.add('show');
       
       closeModal();
       updateSubmitButton();
-      
-      // カレンダーの選択状態更新
-      document.querySelectorAll('.calendar-day.selected').forEach(function(el) {
-        el.classList.remove('selected');
-      });
     }
     
     // 選択クリア
     function clearSelection() {
       selectedSlot = null;
-      document.getElementById('selected-display').classList.remove('show');
+      document.getElementById('selectedDisplay').classList.remove('show');
       updateSubmitButton();
     }
     
-    // 送信ボタン状態更新
+    // 送信ボタン更新
     function updateSubmitButton() {
       const studentId = document.getElementById('studentId').value.trim();
       const studentName = document.getElementById('studentName').value.trim();
       const email = document.getElementById('email').value.trim();
       
-      const isValid = studentId && studentName && email && selectedSlot;
-      document.getElementById('submit-btn').disabled = !isValid;
+      document.getElementById('submitBtn').disabled = !(studentId && studentName && email && selectedSlot);
     }
     
     // 入力監視
-    ['studentId', 'studentName', 'email'].forEach(function(id) {
+    ['studentId', 'studentName', 'email'].forEach(id => {
       document.getElementById(id).addEventListener('input', updateSubmitButton);
     });
     
     // フォーム送信
-    function submitForm() {
-      const submitBtn = document.getElementById('submit-btn');
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
+    async function submitForm() {
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = '送信中...';
       
       const data = {
         studentId: document.getElementById('studentId').value.trim(),
@@ -954,23 +828,28 @@
         endTime: selectedSlot.endTime
       };
       
-      google.script.run
-        .withSuccessHandler(function(result) {
-          if (result.success) {
-            showComplete(data);
-          } else {
-            showMessage(result.message, 'error');
-            submitBtn.disabled = false;
-            submitBtn.textContent = '予約する';
-            loadSlots(); // 再読み込み
-          }
-        })
-        .withFailureHandler(function(error) {
-          showMessage('エラーが発生しました: ' + error, 'error');
-          submitBtn.disabled = false;
-          submitBtn.textContent = '予約する';
-        })
-        .submitReservation(data);
+      try {
+        const response = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          showComplete(data);
+        } else {
+          showMessage(result.message, 'error');
+          btn.disabled = false;
+          btn.textContent = '予約する';
+          loadSlots();
+        }
+      } catch (error) {
+        showMessage('エラーが発生しました', 'error');
+        btn.disabled = false;
+        btn.textContent = '予約する';
+      }
     }
     
     // メッセージ表示
@@ -982,11 +861,11 @@
     
     // 完了画面
     function showComplete(data) {
-      document.getElementById('form-section').style.display = 'none';
-      document.getElementById('complete-datetime').textContent = 
-        data.date + ' ' + data.startTime + '〜' + data.endTime;
-      document.getElementById('complete-name').textContent = data.studentName;
-      document.getElementById('complete-section').classList.add('show');
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('completeDatetime').textContent = 
+        `${data.date} ${data.startTime}〜${data.endTime}`;
+      document.getElementById('completeName').textContent = data.studentName;
+      document.getElementById('completeSection').classList.add('show');
     }
   </script>
 </body>
