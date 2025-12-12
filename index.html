@@ -652,11 +652,11 @@
   
   <script>
     // ★★★ ここにGASのデプロイURLを入れてください ★★★
-    const API_URL = 'https://script.google.com/macros/s/AKfycbwhoqH2GLArS6Ov0YN1UFwoC85Npim-R6zJf660nmBqM77E8gyk1qn4IzJsBZnKom0dww/exec';
+    const API_URL = 'ここにGASのデプロイURLを貼り付け';
     
     let slotsData = [];
     let selectedSlot = null;
-    let currentYear = 2024;
+    let currentYear = 2025;
     let currentMonth = 12;
     let availableDates = {};
     
@@ -691,7 +691,7 @@
         const firstDate = data[0].date.split('（')[0];
         const parts = firstDate.split('/');
         currentMonth = parseInt(parts[0]);
-        currentYear = currentMonth <= 6 ? 2025 : 2024;
+        currentYear = currentMonth <= 6 ? 2026 : 2025;
       }
     }
     
@@ -743,7 +743,7 @@
       if (!slots) return;
       
       const [month, day] = dateKey.split('/').map(Number);
-      const year = month <= 6 ? 2025 : 2024;
+      const year = month <= 6 ? 2026 : 2025;
       const date = new Date(year, month - 1, day);
       const dayNames = ['日','月','火','水','木','金','土'];
       const dayOfWeek = dayNames[date.getDay()];
